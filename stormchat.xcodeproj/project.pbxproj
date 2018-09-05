@@ -14,6 +14,7 @@
 		C708F997208FFD5F00F6F63A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C708F995208FFD5F00F6F63A /* LaunchScreen.storyboard */; };
 		C708F9A2208FFD5F00F6F63A /* stormchatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708F9A1208FFD5F00F6F63A /* stormchatTests.swift */; };
 		C708F9AD208FFD5F00F6F63A /* stormchatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708F9AC208FFD5F00F6F63A /* stormchatUITests.swift */; };
+		C7974036213FAB71002658AC /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7974035213FAB71002658AC /* RegisterController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		C708F9A8208FFD5F00F6F63A /* stormchatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stormchatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C708F9AC208FFD5F00F6F63A /* stormchatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stormchatUITests.swift; sourceTree = "<group>"; };
 		C708F9AE208FFD5F00F6F63A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7974035213FAB71002658AC /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				C708F993208FFD5F00F6F63A /* Assets.xcassets */,
 				C708F995208FFD5F00F6F63A /* LaunchScreen.storyboard */,
 				C708F998208FFD5F00F6F63A /* Info.plist */,
+				C7974035213FAB71002658AC /* RegisterController.swift */,
 			);
 			path = stormchat;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */,
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
+				C7974036213FAB71002658AC /* RegisterController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
