@@ -15,6 +15,10 @@
 		C708F9A2208FFD5F00F6F63A /* stormchatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708F9A1208FFD5F00F6F63A /* stormchatTests.swift */; };
 		C708F9AD208FFD5F00F6F63A /* stormchatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708F9AC208FFD5F00F6F63A /* stormchatUITests.swift */; };
 		C7974036213FAB71002658AC /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7974035213FAB71002658AC /* RegisterController.swift */; };
+		C79740542140C3EB002658AC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740502140C3E8002658AC /* FBSDKShareKit.framework */; };
+		C79740552140C3EB002658AC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740512140C3E8002658AC /* Bolts.framework */; };
+		C79740562140C3EB002658AC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740522140C3EA002658AC /* FBSDKCoreKit.framework */; };
+		C79740572140C3EB002658AC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740532140C3EB002658AC /* FBSDKLoginKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		C708F9AC208FFD5F00F6F63A /* stormchatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stormchatUITests.swift; sourceTree = "<group>"; };
 		C708F9AE208FFD5F00F6F63A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7974035213FAB71002658AC /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		C79740502140C3E8002658AC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		C79740512140C3E8002658AC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		C79740522140C3EA002658AC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C79740532140C3EB002658AC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79740542140C3EB002658AC /* FBSDKShareKit.framework in Frameworks */,
+				C79740562140C3EB002658AC /* FBSDKCoreKit.framework in Frameworks */,
+				C79740572140C3EB002658AC /* FBSDKLoginKit.framework in Frameworks */,
+				C79740552140C3EB002658AC /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +91,10 @@
 		C708F980208FFD5F00F6F63A = {
 			isa = PBXGroup;
 			children = (
+				C79740512140C3E8002658AC /* Bolts.framework */,
+				C79740522140C3EA002658AC /* FBSDKCoreKit.framework */,
+				C79740532140C3EB002658AC /* FBSDKLoginKit.framework */,
+				C79740502140C3E8002658AC /* FBSDKShareKit.framework */,
 				C708F98B208FFD5F00F6F63A /* stormchat */,
 				C708F9A0208FFD5F00F6F63A /* stormchatTests */,
 				C708F9AB208FFD5F00F6F63A /* stormchatUITests */,
@@ -436,6 +452,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87WM9EFVDN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = stormchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gautambaghel.stormchat;
@@ -451,6 +471,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87WM9EFVDN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = stormchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gautambaghel.stormchat;
