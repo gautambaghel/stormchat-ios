@@ -69,8 +69,23 @@
                                         <rect key="frame" x="0.0" y="465.66666666666663" width="334" height="72.666666666666629"/>
                                         <state key="normal" title="FB Login"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KZ-Rf-b1z">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6KZ-Rf-b1z">
                                         <rect key="frame" x="0.0" y="543.33333333333337" width="334" height="72.666666666666629"/>
+                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="google_icon">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="        Sign in with Google">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9rV-jf-6g5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -88,7 +103,6 @@
                     <connections>
                         <outlet property="email" destination="hdq-di-Z4S" id="ZLS-WU-nEP"/>
                         <outlet property="fbLogin" destination="HfE-6m-gfQ" id="PoM-zt-DmK"/>
-                        <outlet property="googleLogin" destination="6KZ-Rf-b1z" id="dlb-oD-eYd"/>
                         <outlet property="loginStack" destination="dcj-hc-u3N" id="RVm-cF-578"/>
                         <outlet property="password" destination="l5P-a5-4Dh" id="uJ1-Xl-bGf"/>
                     </connections>
@@ -197,4 +211,7 @@
             <point key="canvasLocation" x="867" y="85"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="google_icon" width="18" height="18"/>
+    </resources>
 </document>

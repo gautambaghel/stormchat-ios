@@ -16,7 +16,9 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var fbLogin: FBSDKLoginButton!
     @IBOutlet weak var loginStack: UIStackView!
-    @IBOutlet weak var googleLogin: UIButton!
+    @IBAction func googleLogin(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().signIn()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +34,6 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        let googleSignInButton = GIDSignInButton()
-        googleLogin.addSubview(googleSignInButton)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
