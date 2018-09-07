@@ -8,20 +8,33 @@
 
 import UIKit
 import FBSDKLoginKit
+import GoogleSignIn
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegate, GIDSignInDelegate {
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var fbLogin: FBSDKLoginButton!
+    @IBOutlet weak var loginStack: UIStackView!
+    @IBOutlet weak var googleLogin: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         email.delegate = self
         password.delegate = self
         
+        
+        // Google Sign in thing
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        // Uncomment to automatically sign in the user.
+        // GIDSignIn.sharedInstance().signInSilently()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let googleSignInButton = GIDSignInButton()
+        googleLogin.addSubview(googleSignInButton)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -48,6 +61,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        //if any error stop and print the error
+        if error != nil{
+            print(error ?? "google error")
+            return
+        }
+        
+        //if success display the email on label
+        print(user.profile.email)
     }
 
 }

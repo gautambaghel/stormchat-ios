@@ -19,6 +19,13 @@
 		C79740552140C3EB002658AC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740512140C3E8002658AC /* Bolts.framework */; };
 		C79740562140C3EB002658AC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740522140C3EA002658AC /* FBSDKCoreKit.framework */; };
 		C79740572140C3EB002658AC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740532140C3EB002658AC /* FBSDKLoginKit.framework */; };
+		C797405B2142281E002658AC /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740582142281C002658AC /* GoogleSignIn.framework */; };
+		C797405C2142281E002658AC /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79740592142281D002658AC /* GoogleSignInDependencies.framework */; };
+		C797405D2142281E002658AC /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C797405A2142281E002658AC /* GoogleSignIn.bundle */; };
+		C797406021422A2D002658AC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797405F21422A2D002658AC /* LocalAuthentication.framework */; };
+		C797406221422A46002658AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797406121422A46002658AC /* SafariServices.framework */; };
+		C797406421422A4D002658AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797406321422A4D002658AC /* SystemConfiguration.framework */; };
+		C79740672142382D002658AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79740662142382D002658AC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +64,13 @@
 		C79740512140C3E8002658AC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		C79740522140C3EA002658AC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C79740532140C3EB002658AC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		C79740582142281C002658AC /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
+		C79740592142281D002658AC /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
+		C797405A2142281E002658AC /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
+		C797405F21422A2D002658AC /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		C797406121422A46002658AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		C797406321422A4D002658AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C79740662142382D002658AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +78,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C797406421422A4D002658AC /* SystemConfiguration.framework in Frameworks */,
+				C797406221422A46002658AC /* SafariServices.framework in Frameworks */,
+				C797406021422A2D002658AC /* LocalAuthentication.framework in Frameworks */,
+				C797405C2142281E002658AC /* GoogleSignInDependencies.framework in Frameworks */,
 				C79740542140C3EB002658AC /* FBSDKShareKit.framework in Frameworks */,
 				C79740562140C3EB002658AC /* FBSDKCoreKit.framework in Frameworks */,
 				C79740572140C3EB002658AC /* FBSDKLoginKit.framework in Frameworks */,
 				C79740552140C3EB002658AC /* Bolts.framework in Frameworks */,
+				C797405B2142281E002658AC /* GoogleSignIn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,14 +110,18 @@
 		C708F980208FFD5F00F6F63A = {
 			isa = PBXGroup;
 			children = (
-				C79740512140C3E8002658AC /* Bolts.framework */,
-				C79740522140C3EA002658AC /* FBSDKCoreKit.framework */,
-				C79740532140C3EB002658AC /* FBSDKLoginKit.framework */,
-				C79740502140C3E8002658AC /* FBSDKShareKit.framework */,
 				C708F98B208FFD5F00F6F63A /* stormchat */,
 				C708F9A0208FFD5F00F6F63A /* stormchatTests */,
 				C708F9AB208FFD5F00F6F63A /* stormchatUITests */,
 				C708F98A208FFD5F00F6F63A /* Products */,
+				C79740512140C3E8002658AC /* Bolts.framework */,
+				C79740522140C3EA002658AC /* FBSDKCoreKit.framework */,
+				C79740532140C3EB002658AC /* FBSDKLoginKit.framework */,
+				C79740502140C3E8002658AC /* FBSDKShareKit.framework */,
+				C797405A2142281E002658AC /* GoogleSignIn.bundle */,
+				C79740582142281C002658AC /* GoogleSignIn.framework */,
+				C79740592142281D002658AC /* GoogleSignInDependencies.framework */,
+				C797405E21422A2D002658AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +143,7 @@
 				C708F990208FFD5F00F6F63A /* Main.storyboard */,
 				C708F993208FFD5F00F6F63A /* Assets.xcassets */,
 				C708F995208FFD5F00F6F63A /* LaunchScreen.storyboard */,
+				C79740662142382D002658AC /* GoogleService-Info.plist */,
 				C708F998208FFD5F00F6F63A /* Info.plist */,
 				C7974035213FAB71002658AC /* RegisterController.swift */,
 			);
@@ -142,6 +166,16 @@
 				C708F9AE208FFD5F00F6F63A /* Info.plist */,
 			);
 			path = stormchatUITests;
+			sourceTree = "<group>";
+		};
+		C797405E21422A2D002658AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C797406321422A4D002658AC /* SystemConfiguration.framework */,
+				C797406121422A46002658AC /* SafariServices.framework */,
+				C797405F21422A2D002658AC /* LocalAuthentication.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +285,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C797405D2142281E002658AC /* GoogleSignIn.bundle in Resources */,
 				C708F997208FFD5F00F6F63A /* LaunchScreen.storyboard in Resources */,
+				C79740672142382D002658AC /* GoogleService-Info.plist in Resources */,
 				C708F994208FFD5F00F6F63A /* Assets.xcassets in Resources */,
 				C708F992208FFD5F00F6F63A /* Main.storyboard in Resources */,
 			);
@@ -458,6 +494,10 @@
 				);
 				INFOPLIST_FILE = stormchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gautambaghel.stormchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -477,6 +517,10 @@
 				);
 				INFOPLIST_FILE = stormchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gautambaghel.stormchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
