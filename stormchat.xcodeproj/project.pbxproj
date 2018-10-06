@@ -26,6 +26,7 @@
 		C797406221422A46002658AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797406121422A46002658AC /* SafariServices.framework */; };
 		C797406421422A4D002658AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797406321422A4D002658AC /* SystemConfiguration.framework */; };
 		C79740672142382D002658AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79740662142382D002658AC /* GoogleService-Info.plist */; };
+		C797406E21687A6F002658AC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797406C21687A6F002658AC /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		C797406121422A46002658AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		C797406321422A4D002658AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C79740662142382D002658AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C797406C21687A6F002658AC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,14 +140,15 @@
 		C708F98B208FFD5F00F6F63A /* stormchat */ = {
 			isa = PBXGroup;
 			children = (
+				C708F990208FFD5F00F6F63A /* Main.storyboard */,
 				C708F98C208FFD5F00F6F63A /* AppDelegate.swift */,
 				C708F98E208FFD5F00F6F63A /* ViewController.swift */,
-				C708F990208FFD5F00F6F63A /* Main.storyboard */,
 				C708F993208FFD5F00F6F63A /* Assets.xcassets */,
 				C708F995208FFD5F00F6F63A /* LaunchScreen.storyboard */,
 				C79740662142382D002658AC /* GoogleService-Info.plist */,
 				C708F998208FFD5F00F6F63A /* Info.plist */,
 				C7974035213FAB71002658AC /* RegisterController.swift */,
+				C797406C21687A6F002658AC /* AlertController.swift */,
 			);
 			path = stormchat;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C797406E21687A6F002658AC /* AlertController.swift in Sources */,
 				C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */,
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
 				C7974036213FAB71002658AC /* RegisterController.swift in Sources */,
