@@ -78,13 +78,34 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        <#code#>
+        if ((error) != nil) {
+            print(error)
+        }
+        else if (result.isCancelled) {
+            print("User Cancelled Login")
+        }
+        else {
+            self.getFBUserData()
+        }
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        <#code#>
+        print("User Logged out!")
     }
 
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, picture.type(large)"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    let fbDetails = result as! NSDictionary
+                    print(fbDetails)
+                } else {
+                    print("Error Logging in with Facebook, try again or use other methods to log in")
+                }
+            })
+        }
+    }
+        
     @IBAction func loginAction(_ sender: UIButton) {
         let url = URL(string: "https://stormchat.gautambaghel.com/api/v1/token")!
         var request = URLRequest(url: url)
