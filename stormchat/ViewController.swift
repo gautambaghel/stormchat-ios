@@ -13,7 +13,6 @@ import GoogleSignIn
 class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
-        print("reached")
         //if any error stop and print the error
         if error != nil{
             print(error ?? "google error")
@@ -21,9 +20,10 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         }
         
         //if success display the email on label
-        print(user.profile.email)
+        let data = user.profile.email + " " + user.profile.name + " " + user.userID
         DispatchQueue.main.async {
-            self.segueToAlertController(data: user.profile.email)
+            print(data)
+            self.getJSONfromRequest(provider: "google", auth: user.userID ,username: user.profile.name, email: user.profile.email)
         }
     }
     
@@ -43,6 +43,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         
         
         // Google Sign in thing
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         
         // Facebook Sign in button delegate
@@ -105,10 +106,19 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
     // Facebook helper
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name"]).start(completionHandler: { (connection, result, error) -> Void in
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, locale, timezone"]).start(completionHandler: { (connection, result, error) -> Void in
                 // For picture use -> ["fields": "email, name, picture.type(large)"]
                 if (error == nil){
-                    self.segueToAlertController(data: "\(String(describing: result!))")
+                    if
+                        let fields = result as? [String:Any],
+                        let name = fields["name"] as? String,
+                        let id = fields["id"] as? String
+                    {
+                        let email = fields["email"] as? String
+                        self.getJSONfromRequest(provider: "facebook", auth: id, username: name, email: email!)
+                    } else {
+                        print("Error getting data from Facebook, try again or use other methods to log in")
+                    }
                 } else {
                     print("Error Logging in with Facebook, try again or use other methods to log in")
                 }
@@ -124,7 +134,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         request.httpMethod = "POST"
         let email = self.email.text!
         let password = self.password.text!
-        let postString = "email=\(String(describing: email))&pass=\(String(describing: password))"
+        let postString = "email=\(String(describing: email))&password=\(String(describing: password))"
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
@@ -152,6 +162,60 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
         alertController.text = json
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // Choose location
+    func segueToLocationController(data json: String, email: String, provider: String, auth: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let locationController:LocationController = storyBoard.instantiateViewController(withIdentifier: "LocationController") as! LocationController
+        locationController.auth = auth
+        locationController.email = email
+        locationController.provider = provider
+        self.present(locationController, animated: true, completion: nil)
+    }
+    
+    func getJSONfromRequest(provider: String, auth: String,username name: String, email: String) {
+        let url = URL(string: "https://stormchat.gautambaghel.com/api/v1/new_user")!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "provider=\(String(describing: provider))&auth=\(String(describing: auth))&name=\(String(describing: name))"
+        print(postString)
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            if let fields = self.convertToDictionary(text: responseString!){
+                let location = fields["location"] as? String
+                if location == nil {
+                    DispatchQueue.main.async {self.segueToLocationController(data: responseString!, email: email, provider: provider, auth: auth)}
+                } else {
+                  print(location ?? "default loc")
+                  DispatchQueue.main.async {self.segueToAlertController(data: responseString!)}
+               }
+            }
+        }
+        task.resume()
+    }
+    
+    private func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 }
 
