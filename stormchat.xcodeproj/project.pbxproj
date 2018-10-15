@@ -27,6 +27,7 @@
 		C797406421422A4D002658AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C797406321422A4D002658AC /* SystemConfiguration.framework */; };
 		C79740672142382D002658AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79740662142382D002658AC /* GoogleService-Info.plist */; };
 		C797406E21687A6F002658AC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797406C21687A6F002658AC /* AlertController.swift */; };
+		C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */; };
 		C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3EEAE216C04740046A7EB /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		C797406321422A4D002658AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C79740662142382D002658AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C797406C21687A6F002658AC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Locations.swift"; sourceTree = "<group>"; };
 		C7E3EEAE216C04740046A7EB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 		C708F98B208FFD5F00F6F63A /* stormchat */ = {
 			isa = PBXGroup;
 			children = (
+				C7B0466B2172D90800CE5DA5 /* Extensions */,
 				C708F990208FFD5F00F6F63A /* Main.storyboard */,
 				C708F98C208FFD5F00F6F63A /* AppDelegate.swift */,
 				C708F98E208FFD5F00F6F63A /* ViewController.swift */,
@@ -182,6 +185,14 @@
 				C797405F21422A2D002658AC /* LocalAuthentication.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C7B0466B2172D90800CE5DA5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +336,7 @@
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
 				C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */,
 				C7974036213FAB71002658AC /* RegisterController.swift in Sources */,
+				C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

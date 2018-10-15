@@ -11,15 +11,33 @@ import UIKit
 class AlertController: UITableViewController {
     
     var text:String = "[]"
+
+    struct Alert : Codable {
+        let id: String
+        let areaDesc: String
+        let event: String
+        let headline: String
+        
+        enum CodingKeys : String, CodingKey {
+            case id = "    id "
+            case areaDesc = "    areaDesc "
+            case event = "    event "
+            case headline = "    headline "
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")
+        let cellIdentifier = "Cell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellIdentifier")
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: cellIdentifier)
         }
         // print("\(#function) --- section = \(indexPath.section), row = \(indexPath.row)")
+        cell!.textLabel?.numberOfLines = 4
         cell!.textLabel?.text = data[indexPath.row][0]
+        cell!.detailTextLabel?.numberOfLines = 5
         cell!.detailTextLabel?.text = data[indexPath.row][1]
+        cell!.accessoryType = .disclosureIndicator
         return cell!
     }
     
@@ -41,7 +59,7 @@ class AlertController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let json = convertToDictionary(text: text)
+        let json = getDictionary(text: text)
         if let location = json!["location"] as? String {
             UserDefaults.standard.set(text, forKey: "currentUser")
             self.getJSONfromRequest(location: location)
@@ -50,6 +68,17 @@ class AlertController: UITableViewController {
             let loginController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.present(loginController, animated: true, completion: nil)
         }
+    }
+    
+    private func getDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     
     private func convertToDictionary(text: String) -> [String: Any]? {
@@ -64,7 +93,7 @@ class AlertController: UITableViewController {
     }
 
     private func getJSONfromRequest(location: String){
-        let location = "https://stormchat.gautambaghel.com/api/v1/alerts/" + location
+        let location = "https://stormchat.gautambaghel.com/api/v1/alerts/mobile/" + location
         let url = URL(string: location)!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -80,28 +109,30 @@ class AlertController: UITableViewController {
                 print("response = \(String(describing: response))")
             }
             
-            let responseString = String(data: data, encoding: .utf8)
-            DispatchQueue.main.async {
-                self.convertDataToValuableForm(json: self.convertToDictionary(text: responseString!))
-            }
+            let responseString = String(data: data, encoding: .utf8)!
+            self.convertDataToValuableForm(jsonString: responseString)
         }
         task.resume()
     }
 
-    private func convertDataToValuableForm(json: [String: Any]?) {
-        for (_, value) in json! {
-            let eventData = convertToDictionary(text: "\(value)")!
-            let event = eventData["event"] as! String
-            let headline = eventData["headline"] as! String
-            print(event + " " + headline)
-            data.append([event, headline])
-            refreshData()
+    private func convertDataToValuableForm(jsonString: String) {
+        let val = self.convertToDictionary(text: jsonString)
+        for (_, alerts) in val! {
+            let respString = "\(alerts)"
+            let fjsonString = respString.replacingOccurrences(of: "=", with: "\" :", options: .literal, range: nil)
+            let sjsonString = fjsonString.replacingOccurrences(of: "\n", with: "\n \"", options: .literal, range: nil)
+            let tjsonString = sjsonString.replacingOccurrences(of: ";", with: ",", options: .literal, range: nil)
+            let jsonString = tjsonString.replacingOccurrences(of: ",\n \"}", with: "\n }", options: .literal, range: nil)
+            let jsonData = jsonString.data(using: .utf8)!
+            let decoder = JSONDecoder()
+            let alert = try! decoder.decode(Alert.self, from: jsonData)
+            
+            data.append([alert.event + " at " + alert.areaDesc, alert.headline])
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-    }
-    
-    private func refreshData() {
-        self.tableView.reloadData()
-//        self.refresher.endRefreshing()
+      data.remove(at: 0)
     }
     
     var data:[[String]] = [
