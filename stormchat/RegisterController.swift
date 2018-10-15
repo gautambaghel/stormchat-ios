@@ -105,7 +105,7 @@ class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDat
     func segueToAlertController(data json: String) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-        alertController.text = json
+        alertController.jsonString = json
         self.present(alertController, animated: true, completion: nil)
     }
     

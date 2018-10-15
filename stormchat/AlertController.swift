@@ -10,7 +10,7 @@ import UIKit
 
 class AlertController: UITableViewController {
     
-    var text:String = "[]"
+    var jsonString:String = "[]"
 
     struct Alert : Codable {
         let id: String
@@ -41,6 +41,17 @@ class AlertController: UITableViewController {
         return cell!
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatController:ChatController = storyBoard.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+        chatController.id = data[indexPath.row][2]
+        chatController.headline = data[indexPath.row][1]
+        chatController.event = data[indexPath.row][0]
+        self.present(chatController, animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -59,9 +70,9 @@ class AlertController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let json = getDictionary(text: text)
+        let json = getDictionary(text: jsonString)
         if let location = json!["location"] as? String {
-            UserDefaults.standard.set(text, forKey: "currentUser")
+            UserDefaults.standard.set(jsonString, forKey: "currentUser")
             self.getJSONfromRequest(location: location)
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -127,7 +138,7 @@ class AlertController: UITableViewController {
             let decoder = JSONDecoder()
             let alert = try! decoder.decode(Alert.self, from: jsonData)
             
-            data.append([alert.event + " at " + alert.areaDesc, alert.headline])
+            data.append([alert.event + " at " + alert.areaDesc, alert.headline, alert.id])
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -136,6 +147,6 @@ class AlertController: UITableViewController {
     }
     
     var data:[[String]] = [
-        ["** NO ACTIVE ALERTS **", "Pull down to refresh!"],
+        ["** NO ACTIVE ALERTS **", "Pull down to refresh!", ""],
     ]
 }

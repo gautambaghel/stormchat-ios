@@ -28,6 +28,7 @@
 		C79740672142382D002658AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C79740662142382D002658AC /* GoogleService-Info.plist */; };
 		C797406E21687A6F002658AC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797406C21687A6F002658AC /* AlertController.swift */; };
 		C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */; };
+		C7B0466F2174775F00CE5DA5 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466E2174775F00CE5DA5 /* ChatController.swift */; };
 		C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3EEAE216C04740046A7EB /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		C79740662142382D002658AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C797406C21687A6F002658AC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Locations.swift"; sourceTree = "<group>"; };
+		C7B0466E2174775F00CE5DA5 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		C7E3EEAE216C04740046A7EB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 				C7974035213FAB71002658AC /* RegisterController.swift */,
 				C797406C21687A6F002658AC /* AlertController.swift */,
 				C7E3EEAE216C04740046A7EB /* LocationController.swift */,
+				C7B0466E2174775F00CE5DA5 /* ChatController.swift */,
 			);
 			path = stormchat;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			files = (
 				C797406E21687A6F002658AC /* AlertController.swift in Sources */,
 				C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */,
+				C7B0466F2174775F00CE5DA5 /* ChatController.swift in Sources */,
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
 				C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */,
 				C7974036213FAB71002658AC /* RegisterController.swift in Sources */,
