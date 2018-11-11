@@ -1,0 +1,20 @@
+PODS:
+  - SlackTextViewController (1.9.6)
+  - SnapKit (4.0.1)
+
+DEPENDENCIES:
+  - SlackTextViewController
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SlackTextViewController
+    - SnapKit
+
+SPEC CHECKSUMS:
+  SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+
+PODFILE CHECKSUM: 382c636f4901ee0883c286c5c2877af59d7f3408
+
+COCOAPODS: 1.5.3

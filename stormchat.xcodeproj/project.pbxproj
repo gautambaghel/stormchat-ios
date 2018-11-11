@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D0611FFEAD9F30F11E66207 /* Pods_stormchat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 799B0004100C385F2CD98668 /* Pods_stormchat.framework */; };
+		B72DDE913D29B7936FC50461 /* Pods_stormchatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C36FFBB781FFCDE163836B1 /* Pods_stormchatTests.framework */; };
 		C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708F98C208FFD5F00F6F63A /* AppDelegate.swift */; };
 		C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708F98E208FFD5F00F6F63A /* ViewController.swift */; };
 		C708F992208FFD5F00F6F63A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C708F990208FFD5F00F6F63A /* Main.storyboard */; };
@@ -29,7 +31,11 @@
 		C797406E21687A6F002658AC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797406C21687A6F002658AC /* AlertController.swift */; };
 		C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */; };
 		C7B0466F2174775F00CE5DA5 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466E2174775F00CE5DA5 /* ChatController.swift */; };
+		C7B0467121949F6F00CE5DA5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0467021949F6F00CE5DA5 /* TableViewCell.swift */; };
+		C7B046732198C8A000CE5DA5 /* SCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B046722198C8A000CE5DA5 /* SCMessage.swift */; };
+		C7B046752198ED9400CE5DA5 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B046742198ED9400CE5DA5 /* MessageTableViewCell.swift */; };
 		C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3EEAE216C04740046A7EB /* LocationController.swift */; };
+		FED77C11D974F1CCA50C865D /* Pods_stormchatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665DE146E9479FEE60FB9E91 /* Pods_stormchatUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		095DF00874D574E8AB8A70EB /* Pods-stormchatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-stormchatTests/Pods-stormchatTests.release.xcconfig"; sourceTree = "<group>"; };
+		0A3BCE3F3C4ED8A916621DC8 /* Pods-stormchatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchatUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-stormchatUITests/Pods-stormchatUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0C36FFBB781FFCDE163836B1 /* Pods_stormchatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stormchatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E49BAE94880B0AFB1AB7C09 /* Pods-stormchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-stormchat/Pods-stormchat.debug.xcconfig"; sourceTree = "<group>"; };
+		1A69C238E0E6550936058750 /* Pods-stormchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-stormchat/Pods-stormchat.release.xcconfig"; sourceTree = "<group>"; };
+		2FBF01A7F2D419142AC41B26 /* Pods-stormchatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-stormchatTests/Pods-stormchatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6562556D7997A5CE4DA3245F /* Pods-stormchatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-stormchatUITests/Pods-stormchatUITests.release.xcconfig"; sourceTree = "<group>"; };
+		665DE146E9479FEE60FB9E91 /* Pods_stormchatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stormchatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		799B0004100C385F2CD98668 /* Pods_stormchat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stormchat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C708F989208FFD5F00F6F63A /* stormchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stormchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C708F98C208FFD5F00F6F63A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C708F98E208FFD5F00F6F63A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +93,9 @@
 		C797406C21687A6F002658AC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Locations.swift"; sourceTree = "<group>"; };
 		C7B0466E2174775F00CE5DA5 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		C7B0467021949F6F00CE5DA5 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		C7B046722198C8A000CE5DA5 /* SCMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCMessage.swift; sourceTree = "<group>"; };
+		C7B046742198ED9400CE5DA5 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		C7E3EEAE216C04740046A7EB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +113,7 @@
 				C79740572140C3EB002658AC /* FBSDKLoginKit.framework in Frameworks */,
 				C79740552140C3EB002658AC /* Bolts.framework in Frameworks */,
 				C797405B2142281E002658AC /* GoogleSignIn.framework in Frameworks */,
+				5D0611FFEAD9F30F11E66207 /* Pods_stormchat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B72DDE913D29B7936FC50461 /* Pods_stormchatTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,12 +129,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED77C11D974F1CCA50C865D /* Pods_stormchatUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10BF1A767F29D1DD4E3A969E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E49BAE94880B0AFB1AB7C09 /* Pods-stormchat.debug.xcconfig */,
+				1A69C238E0E6550936058750 /* Pods-stormchat.release.xcconfig */,
+				2FBF01A7F2D419142AC41B26 /* Pods-stormchatTests.debug.xcconfig */,
+				095DF00874D574E8AB8A70EB /* Pods-stormchatTests.release.xcconfig */,
+				0A3BCE3F3C4ED8A916621DC8 /* Pods-stormchatUITests.debug.xcconfig */,
+				6562556D7997A5CE4DA3245F /* Pods-stormchatUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C708F980208FFD5F00F6F63A = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +164,7 @@
 				C79740582142281C002658AC /* GoogleSignIn.framework */,
 				C79740592142281D002658AC /* GoogleSignInDependencies.framework */,
 				C797405E21422A2D002658AC /* Frameworks */,
+				10BF1A767F29D1DD4E3A969E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +193,9 @@
 				C797406C21687A6F002658AC /* AlertController.swift */,
 				C7E3EEAE216C04740046A7EB /* LocationController.swift */,
 				C7B0466E2174775F00CE5DA5 /* ChatController.swift */,
+				C7B0467021949F6F00CE5DA5 /* TableViewCell.swift */,
+				C7B046742198ED9400CE5DA5 /* MessageTableViewCell.swift */,
+				C7B046722198C8A000CE5DA5 /* SCMessage.swift */,
 			);
 			path = stormchat;
 			sourceTree = "<group>";
@@ -186,6 +224,9 @@
 				C797406321422A4D002658AC /* SystemConfiguration.framework */,
 				C797406121422A46002658AC /* SafariServices.framework */,
 				C797405F21422A2D002658AC /* LocalAuthentication.framework */,
+				799B0004100C385F2CD98668 /* Pods_stormchat.framework */,
+				0C36FFBB781FFCDE163836B1 /* Pods_stormchatTests.framework */,
+				665DE146E9479FEE60FB9E91 /* Pods_stormchatUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C708F9B1208FFD5F00F6F63A /* Build configuration list for PBXNativeTarget "stormchat" */;
 			buildPhases = (
+				109B8A9C3E2380BF14222C71 /* [CP] Check Pods Manifest.lock */,
 				C708F985208FFD5F00F6F63A /* Sources */,
 				C708F986208FFD5F00F6F63A /* Frameworks */,
 				C708F987208FFD5F00F6F63A /* Resources */,
+				F8FDD0989319ED0FF60E0FEA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -222,6 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C708F9B4208FFD5F00F6F63A /* Build configuration list for PBXNativeTarget "stormchatTests" */;
 			buildPhases = (
+				68F52FEC34A7058AAB4E7409 /* [CP] Check Pods Manifest.lock */,
 				C708F999208FFD5F00F6F63A /* Sources */,
 				C708F99A208FFD5F00F6F63A /* Frameworks */,
 				C708F99B208FFD5F00F6F63A /* Resources */,
@@ -240,6 +284,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C708F9B7208FFD5F00F6F63A /* Build configuration list for PBXNativeTarget "stormchatUITests" */;
 			buildPhases = (
+				B739BEE0A354C735196648AA /* [CP] Check Pods Manifest.lock */,
 				C708F9A4208FFD5F00F6F63A /* Sources */,
 				C708F9A5208FFD5F00F6F63A /* Frameworks */,
 				C708F9A6208FFD5F00F6F63A /* Resources */,
@@ -329,6 +374,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		109B8A9C3E2380BF14222C71 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-stormchat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68F52FEC34A7058AAB4E7409 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-stormchatTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B739BEE0A354C735196648AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-stormchatUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8FDD0989319ED0FF60E0FEA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-stormchat/Pods-stormchat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SlackTextViewController/SlackTextViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlackTextViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-stormchat/Pods-stormchat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C708F985208FFD5F00F6F63A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -336,6 +458,9 @@
 			files = (
 				C797406E21687A6F002658AC /* AlertController.swift in Sources */,
 				C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */,
+				C7B046732198C8A000CE5DA5 /* SCMessage.swift in Sources */,
+				C7B046752198ED9400CE5DA5 /* MessageTableViewCell.swift in Sources */,
+				C7B0467121949F6F00CE5DA5 /* TableViewCell.swift in Sources */,
 				C7B0466F2174775F00CE5DA5 /* ChatController.swift in Sources */,
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
 				C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */,
@@ -508,6 +633,7 @@
 		};
 		C708F9B2208FFD5F00F6F63A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E49BAE94880B0AFB1AB7C09 /* Pods-stormchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +657,7 @@
 		};
 		C708F9B3208FFD5F00F6F63A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A69C238E0E6550936058750 /* Pods-stormchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -554,6 +681,7 @@
 		};
 		C708F9B5208FFD5F00F6F63A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FBF01A7F2D419142AC41B26 /* Pods-stormchatTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -571,6 +699,7 @@
 		};
 		C708F9B6208FFD5F00F6F63A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 095DF00874D574E8AB8A70EB /* Pods-stormchatTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -588,6 +717,7 @@
 		};
 		C708F9B8208FFD5F00F6F63A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A3BCE3F3C4ED8A916621DC8 /* Pods-stormchatUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -604,6 +734,7 @@
 		};
 		C708F9B9208FFD5F00F6F63A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6562556D7997A5CE4DA3245F /* Pods-stormchatUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,6 @@
+framework module Pods_stormchatTests {
+  umbrella header "Pods-stormchatTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
