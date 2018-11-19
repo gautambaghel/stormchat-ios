@@ -31,9 +31,8 @@
 		C797406E21687A6F002658AC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797406C21687A6F002658AC /* AlertController.swift */; };
 		C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */; };
 		C7B0466F2174775F00CE5DA5 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466E2174775F00CE5DA5 /* ChatController.swift */; };
-		C7B0467121949F6F00CE5DA5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0467021949F6F00CE5DA5 /* TableViewCell.swift */; };
-		C7B046732198C8A000CE5DA5 /* SCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B046722198C8A000CE5DA5 /* SCMessage.swift */; };
 		C7B046752198ED9400CE5DA5 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B046742198ED9400CE5DA5 /* MessageTableViewCell.swift */; };
+		C7B04677219973C400CE5DA5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B04676219973C400CE5DA5 /* TableViewCell.swift */; };
 		C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3EEAE216C04740046A7EB /* LocationController.swift */; };
 		FED77C11D974F1CCA50C865D /* Pods_stormchatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665DE146E9479FEE60FB9E91 /* Pods_stormchatUITests.framework */; };
 /* End PBXBuildFile section */
@@ -93,9 +92,8 @@
 		C797406C21687A6F002658AC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Locations.swift"; sourceTree = "<group>"; };
 		C7B0466E2174775F00CE5DA5 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
-		C7B0467021949F6F00CE5DA5 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		C7B046722198C8A000CE5DA5 /* SCMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCMessage.swift; sourceTree = "<group>"; };
 		C7B046742198ED9400CE5DA5 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		C7B04676219973C400CE5DA5 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		C7E3EEAE216C04740046A7EB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,9 +191,8 @@
 				C797406C21687A6F002658AC /* AlertController.swift */,
 				C7E3EEAE216C04740046A7EB /* LocationController.swift */,
 				C7B0466E2174775F00CE5DA5 /* ChatController.swift */,
-				C7B0467021949F6F00CE5DA5 /* TableViewCell.swift */,
+				C7B04676219973C400CE5DA5 /* TableViewCell.swift */,
 				C7B046742198ED9400CE5DA5 /* MessageTableViewCell.swift */,
-				C7B046722198C8A000CE5DA5 /* SCMessage.swift */,
 			);
 			path = stormchat;
 			sourceTree = "<group>";
@@ -458,9 +455,8 @@
 			files = (
 				C797406E21687A6F002658AC /* AlertController.swift in Sources */,
 				C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */,
-				C7B046732198C8A000CE5DA5 /* SCMessage.swift in Sources */,
 				C7B046752198ED9400CE5DA5 /* MessageTableViewCell.swift in Sources */,
-				C7B0467121949F6F00CE5DA5 /* TableViewCell.swift in Sources */,
+				C7B04677219973C400CE5DA5 /* TableViewCell.swift in Sources */,
 				C7B0466F2174775F00CE5DA5 /* ChatController.swift in Sources */,
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
 				C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */,

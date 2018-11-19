@@ -9,13 +9,6 @@
 import UIKit
 import SlackTextViewController
 
-struct Message {
-    var id: Int!
-    var username: String!
-    var text: String!
-    var timestamp: String!
-}
-
 class MessageCell: UITableViewCell {
     static let kMessageTableViewCellMinimumHeight: CGFloat = 50.0;
     static let kMessageTableViewCellAvatarHeight: CGFloat = 30.0;

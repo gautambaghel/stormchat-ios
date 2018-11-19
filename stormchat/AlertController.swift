@@ -70,7 +70,7 @@ class AlertController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let json = getDictionary(text: jsonString)
+        let json = convertToDictionary(text: jsonString)
         if let location = json!["location"] as? String {
             UserDefaults.standard.set(jsonString, forKey: "currentUser")
             self.getJSONfromRequest(location: location)
@@ -79,17 +79,6 @@ class AlertController: UITableViewController {
             let loginController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.present(loginController, animated: true, completion: nil)
         }
-    }
-    
-    private func getDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
     }
     
     private func convertToDictionary(text: String) -> [String: Any]? {
@@ -128,22 +117,24 @@ class AlertController: UITableViewController {
 
     private func convertDataToValuableForm(jsonString: String) {
         let val = self.convertToDictionary(text: jsonString)
-        for (_, alerts) in val! {
-            let respString = "\(alerts)"
-            let fjsonString = respString.replacingOccurrences(of: "=", with: "\" :", options: .literal, range: nil)
-            let sjsonString = fjsonString.replacingOccurrences(of: "\n", with: "\n \"", options: .literal, range: nil)
-            let tjsonString = sjsonString.replacingOccurrences(of: ";", with: ",", options: .literal, range: nil)
-            let jsonString = tjsonString.replacingOccurrences(of: ",\n \"}", with: "\n }", options: .literal, range: nil)
-            let jsonData = jsonString.data(using: .utf8)!
-            let decoder = JSONDecoder()
-            let alert = try! decoder.decode(Alert.self, from: jsonData)
-            
-            data.append([alert.event + " at " + alert.areaDesc, alert.headline, alert.id])
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        if val != nil {
+            for (_, alerts) in val! {
+                let respString = "\(alerts)"
+                let fjsonString = respString.replacingOccurrences(of: "=", with: "\" :", options: .literal, range: nil)
+                let sjsonString = fjsonString.replacingOccurrences(of: "\n", with: "\n \"", options: .literal, range: nil)
+                let tjsonString = sjsonString.replacingOccurrences(of: ";", with: ",", options: .literal, range: nil)
+                let jsonString = tjsonString.replacingOccurrences(of: ",\n \"}", with: "\n }", options: .literal, range: nil)
+                let jsonData = jsonString.data(using: .utf8)!
+                let decoder = JSONDecoder()
+                let alert = try! decoder.decode(Alert.self, from: jsonData)
+                
+                data.append([alert.event + " at " + alert.areaDesc, alert.headline, alert.id])
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
+            data.remove(at: 0)
         }
-      data.remove(at: 0)
     }
     
     var data:[[String]] = [
