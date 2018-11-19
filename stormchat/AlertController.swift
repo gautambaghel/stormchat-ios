@@ -10,20 +10,13 @@ import UIKit
 
 class AlertController: UITableViewController {
     
-    var jsonString:String = "[]"
+    var savedLogin:String = "[]"
 
-    struct Alert : Codable {
+    struct Alert: Codable {
         let id: String
         let areaDesc: String
         let event: String
         let headline: String
-        
-        enum CodingKeys : String, CodingKey {
-            case id = "    id "
-            case areaDesc = "    areaDesc "
-            case event = "    event "
-            case headline = "    headline "
-        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,26 +27,28 @@ class AlertController: UITableViewController {
         }
         // print("\(#function) --- section = \(indexPath.section), row = \(indexPath.row)")
         cell!.textLabel?.numberOfLines = 4
-        cell!.textLabel?.text = data[indexPath.row][0]
+        cell!.textLabel?.text = alertList[indexPath.row][0]
         cell!.detailTextLabel?.numberOfLines = 5
-        cell!.detailTextLabel?.text = data[indexPath.row][1]
+        cell!.detailTextLabel?.text = alertList[indexPath.row][1]
         cell!.accessoryType = .disclosureIndicator
         return cell!
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let chatController:ChatController = storyBoard.instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.id = data[indexPath.row][2]
-        chatController.headline = data[indexPath.row][1]
-        chatController.event = data[indexPath.row][0]
-        self.present(chatController, animated: true, completion: nil)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if alertList[indexPath.row][0] != "** NO ACTIVE ALERTS **" {
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let chatController:ChatController = storyBoard.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+            chatController.id = alertList[indexPath.row][2]
+            chatController.headline = alertList[indexPath.row][1]
+            chatController.event = alertList[indexPath.row][0]
+            self.present(chatController, animated: true, completion: nil)
+            
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return alertList.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,9 +65,13 @@ class AlertController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let json = convertToDictionary(text: jsonString)
+        loadData()
+    }
+    
+    private func loadData() {
+        let json = convertToDictionary(text: savedLogin)
         if let location = json!["location"] as? String {
-            UserDefaults.standard.set(jsonString, forKey: "currentUser")
+            UserDefaults.standard.set(savedLogin, forKey: "currentUser")
             self.getJSONfromRequest(location: location)
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -109,35 +108,27 @@ class AlertController: UITableViewController {
                 print("response = \(String(describing: response))")
             }
             
-            let responseString = String(data: data, encoding: .utf8)!
-            self.convertDataToValuableForm(jsonString: responseString)
+            do {
+                let decoder = JSONDecoder()
+                let response = try decoder.decode([Alert].self, from: data)
+                
+                if response.count > 0 {
+                  self.alertList.removeAll()
+                    for alert in response {
+                        self.alertList.append([alert.event + " at " + alert.areaDesc, alert.headline, alert.id])
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch { print(error) }
+            
         }
         task.resume()
     }
 
-    private func convertDataToValuableForm(jsonString: String) {
-        let val = self.convertToDictionary(text: jsonString)
-        if val != nil {
-            for (_, alerts) in val! {
-                let respString = "\(alerts)"
-                let fjsonString = respString.replacingOccurrences(of: "=", with: "\" :", options: .literal, range: nil)
-                let sjsonString = fjsonString.replacingOccurrences(of: "\n", with: "\n \"", options: .literal, range: nil)
-                let tjsonString = sjsonString.replacingOccurrences(of: ";", with: ",", options: .literal, range: nil)
-                let jsonString = tjsonString.replacingOccurrences(of: ",\n \"}", with: "\n }", options: .literal, range: nil)
-                let jsonData = jsonString.data(using: .utf8)!
-                let decoder = JSONDecoder()
-                let alert = try! decoder.decode(Alert.self, from: jsonData)
-                
-                data.append([alert.event + " at " + alert.areaDesc, alert.headline, alert.id])
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-            data.remove(at: 0)
-        }
-    }
-    
-    var data:[[String]] = [
+    var alertList:[[String]] = [
         ["** NO ACTIVE ALERTS **", "Pull down to refresh!", ""],
     ]
 }
