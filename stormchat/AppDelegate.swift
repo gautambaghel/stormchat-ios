@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         if let data = UserDefaults.standard.object(forKey: "currentUser") {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-            alertController.jsonString = data as! String
+            alertController.savedLogin = data as! String
             alertController.title = "Active Alerts"
             
             let navigationController = UINavigationController(rootViewController: alertController)

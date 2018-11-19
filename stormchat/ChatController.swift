@@ -124,7 +124,6 @@ extension ChatController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.subscribeToRoom()
-        self.setNavigationItemTitle()
         self.configureSlackTableViewController()
         
         // Get user info
@@ -143,15 +142,33 @@ extension ChatController {
         self.tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "MessageTableViewCell")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //self.setNavigationItemTitle()
+    }
     
 //    private func subscribeToRoom() -> Void {
 //        self.currentUser.subscribeToRoom(room: self.room, roomDelegate: self)
 //    }
     
     private func setNavigationItemTitle() -> Void {
-        self.navigationItem.title = "asd"
-        navItem.title = "asd"
-        print(self.navigationItem)
+
+        let navBar: UINavigationBar = UINavigationBar.init(frame: CGRect(x: 0, y: 20, width: view.bounds.width, height: 80))
+        self.view.addSubview(navBar);
+        
+        let navItem = UINavigationItem(title: self.headline);
+        let backItem = UIBarButtonItem.init(title: "< back", style: UIBarButtonItemStyle.plain, target: nil, action: #selector(ChatController.segueToAlertController))
+        navItem.leftBarButtonItem = backItem;
+        navBar.setItems([navItem], animated: false);
+    
+    }
+    
+    @objc private func segueToAlertController() {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     private func configureSlackTableViewController() -> Void {

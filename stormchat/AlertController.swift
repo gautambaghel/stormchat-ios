@@ -19,6 +19,13 @@ class AlertController: UITableViewController {
         let headline: String
     }
     
+    lazy var refreshCtrl: UIRefreshControl = {
+        let refreshCtrl = UIRefreshControl()
+        refreshCtrl.addTarget(self, action:#selector(loadData(_:)),for: UIControlEvents.valueChanged)
+        refreshCtrl.tintColor = UIColor.red
+        return refreshCtrl
+    }()
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
@@ -57,6 +64,7 @@ class AlertController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.addSubview(self.refreshCtrl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,14 +73,15 @@ class AlertController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        loadData()
+        self.loadData("initialize")
     }
     
-    private func loadData() {
+    @objc private func loadData(_ sender: Any) {
         let json = convertToDictionary(text: savedLogin)
         if let location = json!["location"] as? String {
             UserDefaults.standard.set(savedLogin, forKey: "currentUser")
             self.getJSONfromRequest(location: location)
+            
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let loginController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
@@ -121,6 +130,7 @@ class AlertController: UITableViewController {
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.refreshCtrl.endRefreshing()
                 }
             } catch { print(error) }
             
