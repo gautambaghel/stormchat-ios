@@ -106,7 +106,10 @@ class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDat
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
         alertController.savedLogin = json
-        self.present(alertController, animated: true, completion: nil)
+        alertController.title = "Active Alerts"
+        
+        let navigationController = UINavigationController(rootViewController: alertController)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     let states = [
