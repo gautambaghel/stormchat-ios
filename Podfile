@@ -6,8 +6,8 @@ target 'stormchat' do
   use_frameworks!
 
   # Pods for stormchat
-  pod 'SlackTextViewController'
-  pod 'SnapKit'
+  pod 'MessageKit', '~>1.0.0'
+  pod 'MessageInputBar', '~>0.3.0'
 
   target 'stormchatTests' do
     inherit! :search_paths

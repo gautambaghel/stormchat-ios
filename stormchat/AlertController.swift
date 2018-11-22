@@ -46,10 +46,13 @@ class AlertController: UITableViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let chatController:ChatController = storyBoard.instantiateViewController(withIdentifier: "ChatController") as! ChatController
-            chatController.id = alertList[indexPath.row][2]
+            chatController.savedLogin = self.savedLogin
+            chatController.alert_id = alertList[indexPath.row][2]
             chatController.headline = alertList[indexPath.row][1]
             chatController.event = alertList[indexPath.row][0]
-            self.present(chatController, animated: true, completion: nil)
+            
+            let navigationController = UINavigationController(rootViewController: chatController)
+            self.present(navigationController, animated: true, completion: nil)
             
         }
     }

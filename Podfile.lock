@@ -1,20 +1,22 @@
 PODS:
-  - SlackTextViewController (1.9.6)
-  - SnapKit (4.0.1)
+  - MessageInputBar (0.3.0):
+    - MessageInputBar/Core (= 0.3.0)
+  - MessageInputBar/Core (0.3.0)
+  - MessageKit (1.0.0)
 
 DEPENDENCIES:
-  - SlackTextViewController
-  - SnapKit
+  - MessageInputBar (~> 0.3.0)
+  - MessageKit (~> 1.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - SlackTextViewController
-    - SnapKit
+    - MessageInputBar
+    - MessageKit
 
 SPEC CHECKSUMS:
-  SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  MessageInputBar: f4068bc48fbcefe41ae56f30b7c496479c5fb2f8
+  MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
 
-PODFILE CHECKSUM: 382c636f4901ee0883c286c5c2877af59d7f3408
+PODFILE CHECKSUM: 73f19ed5536b6b8392a730355614ab004aa2064b
 
 COCOAPODS: 1.5.3
