@@ -62,6 +62,10 @@ class ChatController: MessagesViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ChatController.loadMessages), userInfo: nil, repeats: true)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadMessages()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
