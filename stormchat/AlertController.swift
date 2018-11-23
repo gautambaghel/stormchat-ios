@@ -27,7 +27,7 @@ class AlertController: UITableViewController {
     }()
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
+        let cellIdentifier = "AlertCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: cellIdentifier)
@@ -41,19 +41,16 @@ class AlertController: UITableViewController {
         return cell!
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if alertList[indexPath.row][0] != "** NO ACTIVE ALERTS **" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chatControllerSegue" {
             
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let chatController:ChatController = storyBoard.instantiateViewController(withIdentifier: "ChatController") as! ChatController
-            chatController.savedLogin = self.savedLogin
+            let chatController = segue.destination
+                as! ChatController
+            
+            let indexPath = self.tableView.indexPathForSelectedRow!
             chatController.alert_id = alertList[indexPath.row][2]
             chatController.headline = alertList[indexPath.row][1]
             chatController.event = alertList[indexPath.row][0]
-            
-            let navigationController = UINavigationController(rootViewController: chatController)
-            self.present(navigationController, animated: true, completion: nil)
-            
         }
     }
     

@@ -27,7 +27,6 @@ var messages: [Message] = []
 
 class ChatController: MessagesViewController {
 
-    var savedLogin:String = "[]"
     var alert_id:String = ""
     var headline:String = ""
     var event:String = ""
@@ -45,7 +44,6 @@ class ChatController: MessagesViewController {
         messageInputBar.delegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         self.navigationItem.title = self.event
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "<Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(backToAlerts))
         
         // Get user info
         if let data = UserDefaults.standard.object(forKey: "currentUser") {
@@ -208,17 +206,27 @@ extension ChatController: MessageInputBarDelegate {
     }
 }
 
-extension ChatController {
+// MARK: - Navigation
+extension ChatController{
     
-    @objc func backToAlerts(){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-        alertController.savedLogin = self.savedLogin
-        alertController.title = "Active Alerts"
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         
-        let navigationController = UINavigationController(rootViewController: alertController)
-        self.present(navigationController, animated: true, completion: nil)
-    }
+        if segue.identifier == "chatInfoSegue" {
+            
+            if let nav = segue.destination as? UINavigationController,
+               let chatInfoController = nav.topViewController as? ChatInfoController {
+                
+                chatInfoController.headline = headline
+                chatInfoController.event = event
+            }
+        }
+     }
+}
+
+
+// MARK: - Helper Functions
+extension ChatController {
     
     @objc func loadMessages(){
         let location = "https://stormchat.gautambaghel.com/api/v1/posts/" + self.alert_id
