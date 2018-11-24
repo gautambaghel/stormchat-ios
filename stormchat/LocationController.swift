@@ -29,7 +29,7 @@ class LocationController: UIViewController, UIPickerViewDataSource, UIPickerView
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func backButtonAction(_ sender: UIBarButtonItem) {
+    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         if provider == "google" {
             GIDSignIn.sharedInstance().signOut()
         } else if provider == "facebook" {
@@ -38,10 +38,7 @@ class LocationController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
         
         UserDefaults.standard.set(nil, forKey: "currentUser")
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        self.present(viewController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func continueButtonAction(_ sender: UIButton) {
@@ -77,19 +74,18 @@ class LocationController: UIViewController, UIPickerViewDataSource, UIPickerView
                     DispatchQueue.main.async {self.segueToLocationController(data: responseString!, email: email, provider: provider)}
                 } else {
                     print(location ?? "default loc")
-                    DispatchQueue.main.async {self.segueToAlertController(data: responseString!)}
+                    DispatchQueue.main.async {self.segueToMainTabController(data: responseString!)}
                 }
             }
         }
         task.resume()
     }
     
-    // Display the Strings
-    func segueToAlertController(data json: String) {
+    func segueToMainTabController(data json: String) {
+        UserDefaults.standard.set(json, forKey: "currentUser")
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-        alertController.savedLogin = json
-        self.present(alertController, animated: true, completion: nil)
+        let mainTabController:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        self.present(mainTabController, animated: true, completion: nil)
     }
     
     // Choose location

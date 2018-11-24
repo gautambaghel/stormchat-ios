@@ -10,8 +10,6 @@ import UIKit
 
 class AlertController: UITableViewController {
     
-    var savedLogin:String = "[]"
-
     struct Alert: Codable {
         let id: String
         let areaDesc: String
@@ -52,6 +50,20 @@ class AlertController: UITableViewController {
             chatController.headline = alertList[indexPath.row][1]
             chatController.event = alertList[indexPath.row][0]
         }
+        
+        
+        if segue.identifier == "alertInfoSegue" {
+            
+            if let nav = segue.destination as? UINavigationController,
+                let alertInfoController = nav.topViewController as? InfoController {
+                
+                alertInfoController.headline = """
+                        The Alert tab notifies you about the
+                        active alerts in your area. \n\n\n You can chat in any of these chat
+                        rooms to talk or help fellow denizens in need.
+                        """
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,11 +89,11 @@ class AlertController: UITableViewController {
     }
     
     @objc private func loadData(_ sender: Any) {
-        let json = convertToDictionary(text: savedLogin)
-        if let location = json!["location"] as? String {
-            UserDefaults.standard.set(savedLogin, forKey: "currentUser")
-            self.getJSONfromRequest(location: location)
-            
+        if let data = UserDefaults.standard.object(forKey: "currentUser"),
+            let savedLogin = data as? String,
+             let json = convertToDictionary(text: savedLogin),
+              let location = json["location"] as? String {
+                self.getJSONfromRequest(location: location)
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let loginController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController

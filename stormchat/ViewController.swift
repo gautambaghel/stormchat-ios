@@ -19,10 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
             return
         }
         
-        //if success display the email on label
-        let data = user.profile.email + " " + user.profile.name + " " + user.userID
         DispatchQueue.main.async {
-            print(data)
             self.getJSONfromRequest(provider: "google", auth: user.userID ,username: user.profile.name, email: user.profile.email)
         }
     }
@@ -83,8 +80,6 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         return true
     }
     
-    // Google
-
     // Facebook Login
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if ((error) != nil) {
@@ -149,32 +144,31 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
             
             let responseString = String(data: data, encoding: .utf8)
             DispatchQueue.main.async {
-                self.segueToAlertController(data: responseString!)
+                self.segueToMainTabController(data: responseString!)
             }
             print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
     
-    // Display the Strings
-    func segueToAlertController(data json: String) {
+    func segueToMainTabController(data json: String) {
+        UserDefaults.standard.set(json, forKey: "currentUser")
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-        alertController.savedLogin = json
-        alertController.title = "Active Alerts"
-        
-        let navigationController = UINavigationController(rootViewController: alertController)
-        self.present(navigationController, animated: true, completion: nil)
+        let mainTabController:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        self.present(mainTabController, animated: true, completion: nil)
     }
     
     // Choose location
     func segueToLocationController(data json: String, email: String, provider: String, auth: String) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let locationController:LocationController = storyBoard.instantiateViewController(withIdentifier: "LocationController") as! LocationController
+        
         locationController.auth = auth
         locationController.email = email
         locationController.provider = provider
-        self.present(locationController, animated: true, completion: nil)
+        
+        let navigationController = UINavigationController(rootViewController: locationController)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     func getJSONfromRequest(provider: String, auth: String,username name: String, email: String) {
@@ -204,7 +198,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
                     DispatchQueue.main.async {self.segueToLocationController(data: responseString!, email: email, provider: provider, auth: auth)}
                 } else {
                   print(location ?? "default loc")
-                  DispatchQueue.main.async {self.segueToAlertController(data: responseString!)}
+                  DispatchQueue.main.async {self.segueToMainTabController(data: responseString!)}
                }
             }
         }

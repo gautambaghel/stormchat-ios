@@ -32,7 +32,9 @@
 		C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */; };
 		C7B0467921A52FA600CE5DA5 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0467821A52FA600CE5DA5 /* ChatController.swift */; };
 		C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3EEAE216C04740046A7EB /* LocationController.swift */; };
-		C7E6BA7E21A7F63400042343 /* ChatInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6BA7D21A7F63400042343 /* ChatInfoController.swift */; };
+		C7E6BA7E21A7F63400042343 /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6BA7D21A7F63400042343 /* InfoController.swift */; };
+		C7E6BA8221A8C1FC00042343 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6BA8121A8C1FC00042343 /* MainTabController.swift */; };
+		C7E6BA8421A9368E00042343 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6BA8321A9368D00042343 /* ProfileController.swift */; };
 		EADD6D30F346CBC5FC4348F7 /* Pods_stormchat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B71BB1A4A2B5A02508BDD626 /* Pods_stormchat.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +92,9 @@
 		C7B0466C2172D96F00CE5DA5 /* String+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Locations.swift"; sourceTree = "<group>"; };
 		C7B0467821A52FA600CE5DA5 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		C7E3EEAE216C04740046A7EB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
-		C7E6BA7D21A7F63400042343 /* ChatInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInfoController.swift; sourceTree = "<group>"; };
+		C7E6BA7D21A7F63400042343 /* InfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
+		C7E6BA8121A8C1FC00042343 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		C7E6BA8321A9368D00042343 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		CC1D15D384131519405D38B6 /* Pods-stormchatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stormchatUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-stormchatUITests/Pods-stormchatUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E96EF7B9C90A7972F7273DF6 /* Pods_stormchatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stormchatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -180,16 +184,18 @@
 				C7B0466B2172D90800CE5DA5 /* Extensions */,
 				C708F990208FFD5F00F6F63A /* Main.storyboard */,
 				C708F98C208FFD5F00F6F63A /* AppDelegate.swift */,
-				C708F98E208FFD5F00F6F63A /* ViewController.swift */,
 				C708F993208FFD5F00F6F63A /* Assets.xcassets */,
 				C708F995208FFD5F00F6F63A /* LaunchScreen.storyboard */,
 				C79740662142382D002658AC /* GoogleService-Info.plist */,
 				C708F998208FFD5F00F6F63A /* Info.plist */,
+				C708F98E208FFD5F00F6F63A /* ViewController.swift */,
+				C7E3EEAE216C04740046A7EB /* LocationController.swift */,
 				C7974035213FAB71002658AC /* RegisterController.swift */,
 				C797406C21687A6F002658AC /* AlertController.swift */,
-				C7E3EEAE216C04740046A7EB /* LocationController.swift */,
 				C7B0467821A52FA600CE5DA5 /* ChatController.swift */,
-				C7E6BA7D21A7F63400042343 /* ChatInfoController.swift */,
+				C7E6BA7D21A7F63400042343 /* InfoController.swift */,
+				C7E6BA8121A8C1FC00042343 /* MainTabController.swift */,
+				C7E6BA8321A9368D00042343 /* ProfileController.swift */,
 			);
 			path = stormchat;
 			sourceTree = "<group>";
@@ -453,8 +459,10 @@
 				C797406E21687A6F002658AC /* AlertController.swift in Sources */,
 				C708F98F208FFD5F00F6F63A /* ViewController.swift in Sources */,
 				C708F98D208FFD5F00F6F63A /* AppDelegate.swift in Sources */,
-				C7E6BA7E21A7F63400042343 /* ChatInfoController.swift in Sources */,
+				C7E6BA7E21A7F63400042343 /* InfoController.swift in Sources */,
 				C7E3EEAF216C04740046A7EB /* LocationController.swift in Sources */,
+				C7E6BA8421A9368E00042343 /* ProfileController.swift in Sources */,
+				C7E6BA8221A8C1FC00042343 /* MainTabController.swift in Sources */,
 				C7B0467921A52FA600CE5DA5 /* ChatController.swift in Sources */,
 				C7974036213FAB71002658AC /* RegisterController.swift in Sources */,
 				C7B0466D2172D96F00CE5DA5 /* String+Locations.swift in Sources */,

@@ -14,6 +14,9 @@ class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDat
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var subscribe: UISwitch!
     @IBOutlet weak var location: UIPickerView!
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,22 +97,18 @@ class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDat
             
             let responseString = String(data: data, encoding: .utf8)
             DispatchQueue.main.async {
-                self.segueToAlertController(data: responseString!)
+                self.segueToMainTabController(data: responseString!)
             }
             print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
     
-    // Display the Strings
-    func segueToAlertController(data json: String) {
+    func segueToMainTabController(data json: String) {
+        UserDefaults.standard.set(json, forKey: "currentUser")
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-        alertController.savedLogin = json
-        alertController.title = "Active Alerts"
-        
-        let navigationController = UINavigationController(rootViewController: alertController)
-        self.present(navigationController, animated: true, completion: nil)
+        let mainTabController:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        self.present(mainTabController, animated: true, completion: nil)
     }
     
     let states = [

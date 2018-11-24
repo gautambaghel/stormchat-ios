@@ -22,16 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         GIDSignIn.sharedInstance().clientID = "233937809448-ft3fvaifkriq5eum29nhch5006c2i9kk.apps.googleusercontent.com"
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        if let data = UserDefaults.standard.object(forKey: "currentUser") {
+        if UserDefaults.standard.object(forKey: "currentUser") != nil {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let alertController:AlertController = storyBoard.instantiateViewController(withIdentifier: "AlertController") as! AlertController
-            alertController.savedLogin = data as! String
-            alertController.title = "Active Alerts"
-            
-            let navigationController = UINavigationController(rootViewController: alertController)
-            
+            let tab:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = navigationController
+            self.window?.rootViewController = tab
             self.window?.makeKeyAndVisible()
         }
         

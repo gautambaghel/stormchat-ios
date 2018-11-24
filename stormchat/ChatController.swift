@@ -215,7 +215,7 @@ extension ChatController{
         if segue.identifier == "chatInfoSegue" {
             
             if let nav = segue.destination as? UINavigationController,
-               let chatInfoController = nav.topViewController as? ChatInfoController {
+               let chatInfoController = nav.topViewController as? InfoController {
                 
                 chatInfoController.headline = headline
                 chatInfoController.event = event

@@ -1,5 +1,5 @@
 //
-//  ChatInfoController.swift
+//  MainTabController.swift
 //  stormchat
 //
 //  Created by Gautam Baghel on 11/23/18.
@@ -8,25 +8,16 @@
 
 import UIKit
 
-class ChatInfoController: UIViewController {
+class MainTabController: UITabBarController {
 
-    @IBAction func done(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBOutlet weak var infoText: UITextView!
-    
-    var headline = ""
-    var event = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        infoText.text = event + "\n\n\n" + headline
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
