@@ -46,15 +46,32 @@ class ChatController: MessagesViewController {
         self.navigationItem.title = self.event
         
         // Get user info
-        if let data = UserDefaults.standard.object(forKey: "currentUser") {
-            let val = self.convertToDictionary(text: data as! String)
-            let userId = val!["auth_id"]!
-            let token = val!["token"]!
-            let username = val!["name"]!
-            self.userId = "\(userId)"
-            self.token = "\(token)"
-            self.username = "\(username)"
+        if let data = UserDefaults.standard.object(forKey: "currentUser"),
+            let json = self.convertToDictionary(text: data as! String) {
+            
+            if let username = json["name"],
+               let token = json["token"] {
+                
+                self.token = "\(token)"
+                self.username = "\(username)"
+            }
+            
+            // Keep this if stmt above the below one
+            // Cos the auth token (fb/google) contains user_id as well
+            // but the stormchat DB token doesn't contain auth_id
+            if let user_id = json["user_id"] {
+                self.userId = "\(user_id)"
+            }
+            
+            if let auth_id = json["auth_id"] {
+                self.userId = "\(auth_id)"
+            }
+            
+            
+        } else {
+            self.segueToLoginController()
         }
+
         
         // Call every second to get messages
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ChatController.loadMessages), userInfo: nil, repeats: true)
@@ -68,6 +85,12 @@ class ChatController: MessagesViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func segueToLoginController() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        self.present(loginController, animated: true, completion: nil)
     }
 
 }

@@ -12,21 +12,29 @@ import GoogleSignIn
 
 class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewDataSource, UIPickerViewDelegate  {
     
+    var provider: String = ""
+    var auth: String = ""
+    var user_id: String = ""
+    var token: String = ""
+    
     @IBOutlet weak var locationPicker: UIPickerView!
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
     @IBOutlet weak var subscribe: UISwitch!
-    
-    var provider: String = ""
-    var auth: String = ""
-    
     
     @IBAction func updateAction(_ sender: UIButton) {
         let row = self.locationPicker.selectedRow(inComponent: 0)
         let location = states[row].split(separator: "-")[1].trimmingCharacters(in: .whitespaces)
         let subscribed = self.subscribe.isOn
-        self.getJSONfromRequest(auth: auth, email: self.email.text!, location: location, subscribed: subscribed, provider: provider)
+        
+        // Edit user data for facebook and google
+        if auth != "" {
+            self.setUserDataForProvider(auth: auth, email: self.email.text!, location: location, subscribed: subscribed)
+        } else {
+        // edit user for internal database
+            let name = self.name.text!
+            self.setUserData(name: name, email: self.email.text!, location: location, subscribed: subscribed, user_id: user_id, token: token)
+        }
     }
     
     @IBAction func logout(_ sender: UIButton) {
@@ -37,13 +45,14 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
             
             if self.provider == "google" {
                 GIDSignIn.sharedInstance().signOut()
-            } else if self.provider == "facebook" {
-                let loginManager = FBSDKLoginManager()
-                loginManager.logOut()
-            } else {
-                
             }
             
+            if self.provider == "facebook" {
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+            }
+            
+            UserDefaults.standard.set(nil, forKey: "currentUser")
             self.segueToViewController()
             
         }))
@@ -52,7 +61,6 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
     }
     
     func segueToViewController() {
-        UserDefaults.standard.set(nil, forKey: "currentUser")
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController:ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         self.present(viewController, animated: true, completion: nil)
@@ -68,36 +76,43 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
 
         name.delegate = self
         email.delegate = self
-        password.delegate = self
         locationPicker.delegate = self
         locationPicker.dataSource = self
         self.loadData()
-        
-        let button = FBSDKLoginButton()
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
         
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func loadData(){
+    func loadData() {
         if let data = UserDefaults.standard.object(forKey: "currentUser"),
             let savedLogin = data as? String,
             let json = convertToDictionary(text: savedLogin) {
             
-            if json["auth_id"] != nil {
-                self.name.isUserInteractionEnabled = false
-                self.email.isUserInteractionEnabled = false
-                self.password.isUserInteractionEnabled = false
+             if let name = json["name"],
+                let email = json["email"],
+                let location = json["location"],
+                let subscribed = json["subscribed"],
+                let token = json["token"] {
+                
+                self.name.text = "\(name)"
+                self.email.text = "\(email)"
+                self.token = "\(token)"
+                self.subscribe.setOn((subscribed as? Bool)!, animated: true)
+                self.selectRow(location: location as? String)
             }
             
-             self.name.text = json["name"] as? String
-             self.email.text = json["email"] as? String
-             let location = json["location"] as? String
-             self.auth = (json["auth"] as? String)!
-             self.provider = (json["provider"] as? String)!
-             self.password.text = "*******"
-             self.selectRow(location: location)
+             if let auth = json["auth"],
+                let provider = json["provider"] {
+                self.name.isUserInteractionEnabled = false
+                self.email.isUserInteractionEnabled = false
+                self.auth = "\(auth)"
+                self.provider = "\(provider)"
+             }
+            
+             if let user_id = json["user_id"] {
+                self.user_id = "\(user_id)"
+             }
             
         } else {
              let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -106,7 +121,7 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
         }
     }
     
-    func selectRow(location loc: String?){
+    func selectRow(location loc: String?) {
         for (index,state) in states.enumerated() {
             let initials = state.split(separator: "-")[1].trimmingCharacters(in: .whitespaces)
             if initials == loc! {
@@ -153,7 +168,7 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
         return states[row]
     }
     
-    func getJSONfromRequest(auth: String, email: String, location: String, subscribed: Bool, provider: String) {
+    func setUserDataForProvider(auth: String, email: String, location: String, subscribed: Bool) {
         let url = URL(string: "https://stormchat.gautambaghel.com/api/v1/token")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -162,12 +177,14 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
         print(postString)
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+            guard let data = data, error == nil else {
+                // check for fundamental networking error
                 print("error=\(String(describing: error))")
                 return
             }
             
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(String(describing: response))")
             }
@@ -181,6 +198,49 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
                     UserDefaults.standard.set(responseString, forKey: "currentUser")
                     self.showAlert(title: "Successful", message: "Current location set to \(String(describing: location!)) and subscription settings updated")
                 }
+            }
+        }
+        task.resume()
+    }
+    
+    func setUserData(name: String, email: String, location: String, subscribed: Bool, user_id: String, token: String) {
+        let url = URL(string: "https://stormchat.gautambaghel.com/api/v1/edit_user")!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "name=\(String(describing: name))&email=\(String(describing: email))&location=\(String(describing: location))&subscribed=\(String(describing: subscribed))&user_id=\(String(describing: user_id))&token=\(String(describing: token))"
+        print(postString)
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            if let fields = self.convertToDictionary(text: responseString!){
+              DispatchQueue.main.async {
+                if let location = fields["location"] as? String,
+                    let _ = fields["subscribed"] as? Bool,
+                    let _ = fields["name"] as? String,
+                    let _ = fields["email"] as? String {
+                    UserDefaults.standard.set(responseString, forKey: "currentUser")
+                    self.showAlert(title: "Successful", message: "Current location set to \(String(describing: location)) and other settings updated")
+                } else {
+                    if let err = fields["error"] {
+                        self.showAlert(title: "Error", message: "\(err)")
+                    } else {
+                        self.showAlert(title: "Error", message: "Sorry, something went wrong!")
+                    }
+                }
+              }
             }
         }
         task.resume()

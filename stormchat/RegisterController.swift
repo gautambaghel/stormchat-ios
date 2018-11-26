@@ -9,6 +9,11 @@ import UIKit
 
 class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDataSource, UIPickerViewDelegate {
     
+    struct Errors : Codable {
+        var email: String
+        var password: String
+    }
+    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -82,7 +87,6 @@ class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDat
         let location = states[row].split(separator: "-")[1].trimmingCharacters(in: .whitespaces)
         let subscribed = self.subscribe.isOn
         let postString = "name=\(String(describing: name))&email=\(String(describing: email))&password=\(String(describing: password))&location=\(String(describing: location))&subscribe=\(String(describing: subscribed))"
-        print(postString)
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
@@ -96,19 +100,37 @@ class RegisterController: UIViewController, UITextFieldDelegate ,UIPickerViewDat
             }
             
             let responseString = String(data: data, encoding: .utf8)
-            DispatchQueue.main.async {
-                self.segueToMainTabController(data: responseString!)
+            if let fields = self.convertToDictionary(text: responseString!){
+                DispatchQueue.main.async {
+                    if let err = fields["error"] {
+                        let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                    } else {
+                        UserDefaults.standard.set(responseString, forKey: "currentUser")
+                        self.segueToMainTabController()
+                    }
+                }
             }
-            print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
     
-    func segueToMainTabController(data json: String) {
-        UserDefaults.standard.set(json, forKey: "currentUser")
+    func segueToMainTabController() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabController:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
         self.present(mainTabController, animated: true, completion: nil)
+    }
+    
+    private func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     
     let states = [

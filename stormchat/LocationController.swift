@@ -45,10 +45,10 @@ class LocationController: UIViewController, UIPickerViewDataSource, UIPickerView
         let row = self.location.selectedRow(inComponent: 0)
         let location = states[row].split(separator: "-")[1].trimmingCharacters(in: .whitespaces)
         let subscribed = self.subscribed.isOn
-        self.getJSONfromRequest(auth: auth!, email: email!, location: location, subscribed: subscribed, provider: provider!)
+        self.registerUser(auth: auth!, email: email!, location: location, subscribed: subscribed, provider: provider!)
     }
     
-    func getJSONfromRequest(auth: String, email: String, location: String, subscribed: Bool, provider: String) {
+    func registerUser(auth: String, email: String, location: String, subscribed: Bool, provider: String) {
         let url = URL(string: "https://stormchat.gautambaghel.com/api/v1/token")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -69,11 +69,8 @@ class LocationController: UIViewController, UIPickerViewDataSource, UIPickerView
             
             let responseString = String(data: data, encoding: .utf8)
             if let fields = self.convertToDictionary(text: responseString!){
-                let location = fields["location"] as? String
-                if location == nil {
-                    DispatchQueue.main.async {self.segueToLocationController(data: responseString!, email: email, provider: provider)}
-                } else {
-                    print(location ?? "default loc")
+                if (fields["location"] as? String) != nil {
+                    UserDefaults.standard.set(responseString, forKey: "currentUser")
                     DispatchQueue.main.async {self.segueToMainTabController(data: responseString!)}
                 }
             }
@@ -86,15 +83,6 @@ class LocationController: UIViewController, UIPickerViewDataSource, UIPickerView
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabController:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
         self.present(mainTabController, animated: true, completion: nil)
-    }
-    
-    // Choose location
-    func segueToLocationController(data json: String, email: String, provider: String) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let locationController:LocationController = storyBoard.instantiateViewController(withIdentifier: "LocationController") as! LocationController
-        locationController.email = email
-        locationController.provider = provider
-        self.present(locationController, animated: true, completion: nil)
     }
     
     private func convertToDictionary(text: String) -> [String: Any]? {

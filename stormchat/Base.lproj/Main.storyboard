@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,32 +17,32 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-hc-u3N">
-                                <rect key="frame" x="40" y="60" width="240" height="448"/>
+                                <rect key="frame" x="40" y="60" width="240" height="360"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storm Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEf-4l-u1D">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="40.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hdq-di-Z4S">
-                                        <rect key="frame" x="0.0" y="56.5" width="240" height="52"/>
+                                        <rect key="frame" x="0.0" y="45.5" width="240" height="41"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l5P-a5-4Dh">
-                                        <rect key="frame" x="0.0" y="113.5" width="240" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="91.5" width="240" height="40.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTn-y0-KEz">
-                                        <rect key="frame" x="0.0" y="170" width="240" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="137" width="240" height="40.5"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.50980392159999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <state key="normal" title="Login">
@@ -53,7 +53,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8g-oJ-csa">
-                                        <rect key="frame" x="0.0" y="226.5" width="240" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="182.5" width="240" height="40.5"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.50980392159999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <state key="normal" title="Sign Up">
@@ -64,17 +64,17 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" - or - " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe3-CO-rrk">
-                                        <rect key="frame" x="0.0" y="283" width="240" height="52"/>
+                                        <rect key="frame" x="0.0" y="228" width="240" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfE-6m-gfQ" customClass="FBSDKLoginButton">
-                                        <rect key="frame" x="0.0" y="340" width="240" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="274" width="240" height="40.5"/>
                                         <state key="normal" title="FB Login"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6KZ-Rf-b1z">
-                                        <rect key="frame" x="0.0" y="396.5" width="240" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="319.5" width="240" height="40.5"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="google_icon">
                                             <attributedString key="attributedTitle">
@@ -120,11 +120,11 @@
             <objects>
                 <viewController id="fab-ea-sb4" customClass="RegisterController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ybh-ie-mKw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yKc-O9-ijT">
-                                <rect key="frame" x="40" y="50" width="240" height="468"/>
+                                <rect key="frame" x="40" y="6" width="240" height="468"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJI-nl-Tb0">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="216"/>
@@ -213,11 +213,11 @@
             <objects>
                 <viewController storyboardIdentifier="LocationController" id="vF3-yO-e3W" customClass="LocationController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SZ0-bB-Ogl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="tF5-dx-df0">
-                                <rect key="frame" x="15" y="110" width="290" height="348"/>
+                                <rect key="frame" x="15" y="66" width="290" height="348"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our API uses one of the US states to get the weather information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ki3-qi-4aV">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="82.5"/>
@@ -292,7 +292,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AlertController" id="R29-NJ-QgJ" customClass="AlertController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R5Y-P8-Qc2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -351,7 +351,7 @@
             <objects>
                 <viewController storyboardIdentifier="ChatController" id="Zcj-i2-tER" customClass="ChatController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cyy-CO-Nfn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mOP-pT-aGQ"/>
@@ -377,11 +377,11 @@
             <objects>
                 <viewController id="cqH-tD-WVy" customClass="InfoController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3cd-Gf-Jln">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9X-jM-ih6">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w9X-jM-ih6">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">The Alert tab notifies you about the active alerts in your area.  You can chat in any of these chat rooms to talk or help fellow denizens in need.                                                </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -417,47 +417,41 @@
             <objects>
                 <viewController id="slQ-cg-9L9" customClass="ProfileController" customModule="stormchat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zVs-Zr-0v0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aCX-YL-2Ii">
-                                <rect key="frame" x="15" y="15" width="290" height="489"/>
+                                <rect key="frame" x="15" y="15" width="290" height="401"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cV-jO-FaH">
-                                        <rect key="frame" x="0.0" y="0.0" width="290" height="216"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="199"/>
                                     </pickerView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-ta-lJq">
-                                        <rect key="frame" x="0.0" y="216" width="290" height="273"/>
+                                        <rect key="frame" x="0.0" y="199" width="290" height="202"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-AX-YEk">
-                                                <rect key="frame" x="0.0" y="0.0" width="290" height="39"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DKi-Af-h5T">
-                                                <rect key="frame" x="0.0" y="47" width="290" height="38.5"/>
+                                                <rect key="frame" x="0.0" y="42" width="290" height="34"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tdb-sb-QBB">
-                                                <rect key="frame" x="0.0" y="93.5" width="290" height="39"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="password"/>
-                                            </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rFN-8I-fIb">
-                                                <rect key="frame" x="0.0" y="140.5" width="290" height="39"/>
+                                                <rect key="frame" x="0.0" y="84" width="290" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqH-5K-Jjd">
-                                                        <rect key="frame" x="0.0" y="9" width="241" height="21"/>
+                                                        <rect key="frame" x="0.0" y="9" width="241" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3sN-xS-Mgu">
-                                                        <rect key="frame" x="241" y="7" width="51" height="25"/>
+                                                        <rect key="frame" x="241" y="7" width="51" height="20"/>
                                                     </switch>
                                                 </subviews>
                                                 <constraints>
@@ -466,7 +460,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2MT-Ei-UzR">
-                                                <rect key="frame" x="0.0" y="187.5" width="290" height="38.5"/>
+                                                <rect key="frame" x="0.0" y="126" width="290" height="34"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="Update">
@@ -478,7 +472,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nk-Fr-RCO">
-                                                <rect key="frame" x="0.0" y="234" width="290" height="39"/>
+                                                <rect key="frame" x="0.0" y="168" width="290" height="34"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <state key="normal" title="Logout">
@@ -508,7 +502,6 @@
                         <outlet property="email" destination="DKi-Af-h5T" id="Zp3-Jd-oJa"/>
                         <outlet property="locationPicker" destination="2cV-jO-FaH" id="6wu-Sd-bVD"/>
                         <outlet property="name" destination="fgu-AX-YEk" id="aE4-wJ-Vud"/>
-                        <outlet property="password" destination="Tdb-sb-QBB" id="QEB-Eb-BaU"/>
                         <outlet property="subscribe" destination="3sN-xS-Mgu" id="GsU-hv-BdO"/>
                     </connections>
                 </viewController>

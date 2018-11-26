@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         }
         
         DispatchQueue.main.async {
-            self.getJSONfromRequest(provider: "google", auth: user.userID ,username: user.profile.name, email: user.profile.email)
+            self.registerOrSigninUser(provider: "google", auth: user.userID ,username: user.profile.name, email: user.profile.email)
         }
     }
     
@@ -110,7 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
                         let id = fields["id"] as? String
                     {
                         let email = fields["email"] as? String
-                        self.getJSONfromRequest(provider: "facebook", auth: id, username: name, email: email!)
+                        self.registerOrSigninUser(provider: "facebook", auth: id, username: name, email: email!)
                     } else {
                         print("Error getting data from Facebook, try again or use other methods to log in")
                     }
@@ -143,23 +143,30 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
             }
             
             let responseString = String(data: data, encoding: .utf8)
-            DispatchQueue.main.async {
-                self.segueToMainTabController(data: responseString!)
+            if let fields = self.convertToDictionary(text: responseString!){
+                DispatchQueue.main.async {
+                    if let err = fields["errors"] as? String {
+                        let alert = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                    } else {
+                        UserDefaults.standard.set(responseString, forKey: "currentUser")
+                        self.segueToMainTabController()
+                    }
+                }
             }
-            print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
     
-    func segueToMainTabController(data json: String) {
-        UserDefaults.standard.set(json, forKey: "currentUser")
+    func segueToMainTabController() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabController:MainTabController = storyBoard.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
         self.present(mainTabController, animated: true, completion: nil)
     }
     
     // Choose location
-    func segueToLocationController(data json: String, email: String, provider: String, auth: String) {
+    func segueToLocationController(email: String, provider: String, auth: String) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let locationController:LocationController = storyBoard.instantiateViewController(withIdentifier: "LocationController") as! LocationController
         
@@ -171,7 +178,9 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
         self.present(navigationController, animated: true, completion: nil)
     }
     
-    func getJSONfromRequest(provider: String, auth: String,username name: String, email: String) {
+    // if the fb/google User is already registered on system, then they must've location set in
+    // Otherwise take them to location controller
+    func registerOrSigninUser(provider: String, auth: String,username name: String, email: String) {
         let url = URL(string: "https://stormchat.gautambaghel.com/api/v1/new_user")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -195,10 +204,10 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
             if let fields = self.convertToDictionary(text: responseString!){
                 let location = fields["location"] as? String
                 if location == nil {
-                    DispatchQueue.main.async {self.segueToLocationController(data: responseString!, email: email, provider: provider, auth: auth)}
+                    DispatchQueue.main.async {self.segueToLocationController(email: email, provider: provider, auth: auth)}
                 } else {
-                  print(location ?? "default loc")
-                  DispatchQueue.main.async {self.segueToMainTabController(data: responseString!)}
+                  UserDefaults.standard.set(responseString, forKey: "currentUser")
+                  DispatchQueue.main.async {self.segueToMainTabController()}
                }
             }
         }

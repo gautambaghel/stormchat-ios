@@ -11,10 +11,10 @@ import UIKit
 class AlertController: UITableViewController {
     
     struct Alert: Codable {
-        let id: String
-        let areaDesc: String
-        let event: String
-        let headline: String
+        let id: String?
+        let areaDesc: String?
+        let event: String?
+        let headline: String?
     }
     
     lazy var refreshCtrl: UIRefreshControl = {
@@ -119,6 +119,11 @@ class AlertController: UITableViewController {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            DispatchQueue.main.async {
+                self.refreshCtrl.endRefreshing()
+            }
+            
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(String(describing: error))")
                 return
@@ -136,13 +141,17 @@ class AlertController: UITableViewController {
                 if response.count > 0 {
                   self.alertList.removeAll()
                     for alert in response {
-                        self.alertList.append([alert.event + " at " + alert.areaDesc, alert.headline, alert.id])
+                        if let headline = alert.headline,
+                           let event = alert.event,
+                           let id = alert.id,
+                           let areaDesc = alert.areaDesc {
+                            self.alertList.append([event + " at " + areaDesc, headline, id])
+                        }
                     }
                 }
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.refreshCtrl.endRefreshing()
                 }
             } catch { print(error) }
             
