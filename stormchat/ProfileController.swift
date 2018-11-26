@@ -191,13 +191,15 @@ class ProfileController: UIViewController, UITextFieldDelegate ,UIPickerViewData
             
             let responseString = String(data: data, encoding: .utf8)
             if let fields = self.convertToDictionary(text: responseString!){
-                let location = fields["location"] as? String
-                if location == nil {
-                    self.showAlert(title: "Error in setting location", message: "Something went wrong while setting \(String(describing: location!)) as location")
-                } else {
+               DispatchQueue.main.async {
+                if let location = fields["location"] as? String,
+                    let _ = fields["subscribed"] as? Bool {
                     UserDefaults.standard.set(responseString, forKey: "currentUser")
-                    self.showAlert(title: "Successful", message: "Current location set to \(String(describing: location!)) and subscription settings updated")
+                    self.showAlert(title: "Successful", message: "Current location set to \(String(describing: location)) and subscription settings updated")
+                } else {
+                    self.showAlert(title: "Error in setting location", message: "Something went wrong while setting \(String(describing: location)) as location")
                 }
+              }
             }
         }
         task.resume()

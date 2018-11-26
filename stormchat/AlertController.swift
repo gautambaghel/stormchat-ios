@@ -15,6 +15,7 @@ class AlertController: UITableViewController {
         let areaDesc: String?
         let event: String?
         let headline: String?
+        let severity: String?
     }
     
     lazy var refreshCtrl: UIRefreshControl = {
@@ -36,6 +37,7 @@ class AlertController: UITableViewController {
         cell!.detailTextLabel?.numberOfLines = 5
         cell!.detailTextLabel?.text = alertList[indexPath.row][1]
         cell!.accessoryType = .disclosureIndicator
+        cell!.imageView?.image = getUIImageBasedOnSeverity(severity: alertList[indexPath.row][3])
         return cell!
     }
     
@@ -144,8 +146,9 @@ class AlertController: UITableViewController {
                         if let headline = alert.headline,
                            let event = alert.event,
                            let id = alert.id,
-                           let areaDesc = alert.areaDesc {
-                            self.alertList.append([event + " at " + areaDesc, headline, id])
+                           let areaDesc = alert.areaDesc,
+                           let severity = alert.severity{
+                            self.alertList.append([event + " at " + areaDesc, headline, id, severity])
                         }
                     }
                 }
@@ -160,6 +163,14 @@ class AlertController: UITableViewController {
     }
 
     var alertList:[[String]] = [
-        ["** NO ACTIVE ALERTS **", "Pull down to refresh!", ""],
+        ["** NO ACTIVE ALERTS **", "Pull down to refresh!", "", ""],
     ]
+    
+    func getUIImageBasedOnSeverity(severity: String) -> UIImage {
+        if let image = UIImage(named: "status_"+severity) {
+            return image
+        } else {
+            return UIImage(named: "status_Unknown")!
+        }
+    }
 }

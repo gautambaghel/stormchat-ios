@@ -145,7 +145,7 @@ class ViewController: UIViewController, UITextFieldDelegate , GIDSignInUIDelegat
             let responseString = String(data: data, encoding: .utf8)
             if let fields = self.convertToDictionary(text: responseString!){
                 DispatchQueue.main.async {
-                    if let err = fields["errors"] as? String {
+                    if let err = fields["error"] as? String {
                         let alert = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                         self.present(alert, animated: true)
